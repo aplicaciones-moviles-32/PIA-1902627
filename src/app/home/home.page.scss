@@ -1,0 +1,35 @@
+#contenedor-pagina {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.contenedor-login {
+  align-self: center;
+  vertical-align: middle;
+  width: 40%;
+}
+
+#error {
+  align-self: center;
+  background-color: darkred;
+  border: 1px solid crimson;
+  border-radius: 5px;
+  color: white;
+  width: 40%;
+  padding: 1rem;
+}
+
+ion-card-header {
+  background-color: orange;
+  font-size: large;
+  color: white;
+}
+
+ion-input {
+  border-bottom: 2px solid orange;
+}
+
