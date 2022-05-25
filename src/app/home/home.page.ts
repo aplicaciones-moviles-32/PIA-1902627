@@ -11,7 +11,9 @@ import { Router } from '@angular/router'
 })
 export class HomePage {
   
-  constructor(private auth: LoginService, private ruta: Router) {}
+  constructor(private auth: LoginService, private ruta: Router) {
+    console.log("Aaaaaaaaaa");
+   }
 
   mensajeError: boolean|string = false;
 
