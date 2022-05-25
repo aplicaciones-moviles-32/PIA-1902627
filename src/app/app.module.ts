@@ -11,12 +11,13 @@ import { provideAuth,getAuth } from '@angular/fire/auth';
 import { provideDatabase,getDatabase } from '@angular/fire/database';
 import { provideStorage,getStorage } from '@angular/fire/storage';
 import { FormsModule } from '@angular/forms';
-
+import { HomePageModule } from './home/home.module';
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
   imports: [
+            HomePageModule,
             BrowserModule,
             IonicModule.forRoot(), 
             AppRoutingModule, 
