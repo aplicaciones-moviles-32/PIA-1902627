@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { NoHalladoComponent } from './no-hallado/no-hallado.component';
 import { VistaTabsComponent } from './vista-tabs/vista-tabs.component';
+import { VistaComponent } from './perfil/vista/vista.component';
+import { NuevaPublicacionComponent } from './nueva-publicacion/nueva-publicacion.component';
 
 const routes: Routes = [
   {
@@ -13,7 +15,10 @@ const routes: Routes = [
     redirectTo: 'auth',
     pathMatch: 'full',
   },
-  { path: 'inicio', component: VistaTabsComponent},
+  { path: 'inicio', component: VistaTabsComponent, children: [
+      {path: "perfil", component: VistaComponent},
+      {path: "publicar", component: NuevaPublicacionComponent},
+  ]},
   { path: '**', component: NoHalladoComponent }
 ];
 

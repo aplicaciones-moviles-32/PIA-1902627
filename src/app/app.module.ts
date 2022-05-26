@@ -12,9 +12,17 @@ import { provideDatabase,getDatabase } from '@angular/fire/database';
 import { provideStorage,getStorage } from '@angular/fire/storage';
 import { FormsModule } from '@angular/forms';
 import { HomePageModule } from './home/home.module';
+import { DatosComponent } from './perfil/datos/datos.component';
+import { VistaComponent } from './perfil/vista/vista.component';
+import { VistaTabsComponent } from './vista-tabs/vista-tabs.component';
+import { NuevaPublicacionComponent } from './nueva-publicacion/nueva-publicacion.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent,
+                DatosComponent,
+                VistaComponent,
+                VistaTabsComponent,
+                NuevaPublicacionComponent],
   entryComponents: [],
   imports: [
             HomePageModule,

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LoginService } from '../servicios/login.service';
 
 @Component({
   selector: 'app-vista-tabs',
@@ -7,8 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class VistaTabsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private login: LoginService) { }
 
   ngOnInit() {}
 
+  logout() {
+    this.login.cerrarSesion();
+  }
 }

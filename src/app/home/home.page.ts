@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { LoginService } from '../servicios/login.service'
 import { AuthErrorCodes } from 'firebase/auth';
 import { Router } from '@angular/router'
-
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -11,7 +11,7 @@ import { Router } from '@angular/router'
 })
 export class HomePage {
   
-  constructor(private auth: LoginService, private ruta: Router) { }
+  constructor(private auth: LoginService, private ruta: Router,public alertController: AlertController) { }
 
   mensajeError: boolean|string = false;
 
@@ -27,15 +27,28 @@ export class HomePage {
     password: '',
   }
 
-  login() {
+  async presentAlert(mensaje: string) {
+    const alert = await this.alertController.create({
+      cssClass: '',
+      header: 'Notificación',
+      subHeader: '',
+      message: mensaje,
+      buttons: ['OK']
+    });
+
+    await alert.present();
+
+    const { role } = await alert.onDidDismiss();
+    console.log('onDidDismiss resolved with role', role);
+  }
+
+  async login() {
     this.mensajeError = false;
-    let promCred = this.auth.ingresarCorreoContrasena(this.usuario.email, this.usuario.password);
-    promCred
-    .then(res => {
-      console.log(res);
+    try {
+      let cred = await this.auth.ingresarCorreoContrasena(this.usuario.email, this.usuario.password);
       this.ruta.navigate(['/inicio']);
-    })
-    .catch(error => {
+    }
+    catch(error) {
       const errorCode = error.code;
       if (errorCode == AuthErrorCodes.TOO_MANY_ATTEMPTS_TRY_LATER) {
         this.mensajeError = this.mensajesError.bloqueada;
@@ -43,19 +56,23 @@ export class HomePage {
       else {
         this.mensajeError = this.mensajesError.login;
       }
-      
       console.log(error);
-    })
+    }
   }
 
-  registrar() {
+  async registrar() {
     this.mensajeError = false;
-    let promCred = this.auth.registrarCorreoContrasena(this.usuario.email, this.usuario.password);
-    promCred
-    .then(res => {
-      console.log(res);
-    })
-    .catch(error => {
+    try {
+      let cred = await this.auth.registrarCorreoContrasena(this.usuario.email, this.usuario.password);
+      try {
+        await this.auth.crearUsuario(cred.user.uid);
+        this.presentAlert("Usuario creado con éxito");
+      }
+      catch(error) {
+        this.presentAlert("Hubo un error al crear el usuario, reportar al adminsitrador");
+      }
+    }
+    catch(error) {
       const errorCode = error.code;
       if (errorCode == AuthErrorCodes.EMAIL_EXISTS) {
         this.mensajeError = this.mensajesError.yaexiste;
@@ -64,6 +81,6 @@ export class HomePage {
         this.mensajeError = this.mensajesError.registrar;
       }
       console.log(error);
-    })
+    }
   }
 }
