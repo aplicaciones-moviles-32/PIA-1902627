@@ -11,7 +11,13 @@ import { AlertController } from '@ionic/angular';
 })
 export class HomePage {
   
-  constructor(private auth: LoginService, private ruta: Router,public alertController: AlertController) { }
+  constructor(private auth: LoginService, private ruta: Router,public alertController: AlertController) {
+    //Carga el inicio si ya inició sesión
+    auth.obtenerUsuario().subscribe(user=> {
+      if(user) {
+        this.ruta.navigate(['/inicio']);
+      }})
+  }
 
   mensajeError: boolean|string = false;
 
@@ -46,7 +52,6 @@ export class HomePage {
     this.mensajeError = false;
     try {
       let cred = await this.auth.ingresarCorreoContrasena(this.usuario.email, this.usuario.password);
-      this.ruta.navigate(['/inicio']);
     }
     catch(error) {
       const errorCode = error.code;

@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { LoginService } from './servicios/login.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,13 @@ import { Component } from '@angular/core';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-  constructor() {}
+  //Carga el inicio si ya inició sesión
+  constructor(private log: LoginService, private ruta: Router) {
+    /*
+    log.obtenerUsuario().subscribe(user => {
+      if(!user) {
+        ruta.navigate(['/auth']);
+      }
+    })*/
+  }
 }

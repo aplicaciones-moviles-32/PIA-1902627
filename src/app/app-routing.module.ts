@@ -18,6 +18,7 @@ const routes: Routes = [
   { path: 'inicio', component: VistaTabsComponent, children: [
       {path: "perfil", component: VistaComponent},
       {path: "publicar", component: NuevaPublicacionComponent},
+      {path: '', redirectTo: "perfil", pathMatch: 'full'}
   ]},
   { path: '**', component: NoHalladoComponent }
 ];

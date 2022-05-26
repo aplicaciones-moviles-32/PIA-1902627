@@ -4,7 +4,9 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
-  <ion-button>Tomar Foto</ion-button>
-  <ion-input>Descripción</ion-input>
-  <ion-button>Publicar</ion-button>
+  <div>{{mensaje}}</div>
+  <ion-button (click)="tomarFoto()">Tomar Foto</ion-button>
+  <ion-input [(ngModel)]="descripcion">Descripción</ion-input>
+  <ion-button (click)="crearPublicacion()">Publicar</ion-button>
+  <img [src]=omitirSeguridad(fotourl) alt="" *ngIf="fotourl">
 </ion-content>
