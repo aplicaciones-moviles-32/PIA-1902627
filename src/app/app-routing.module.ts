@@ -4,6 +4,7 @@ import { NoHalladoComponent } from './no-hallado/no-hallado.component';
 import { VistaTabsComponent } from './vista-tabs/vista-tabs.component';
 import { VistaComponent } from './perfil/vista/vista.component';
 import { NuevaPublicacionComponent } from './nueva-publicacion/nueva-publicacion.component';
+import { TemplatePubComponent } from './template-pub/template-pub.component';
 
 const routes: Routes = [
   {
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'inicio', component: VistaTabsComponent, children: [
       {path: "perfil", component: VistaComponent},
       {path: "publicar", component: NuevaPublicacionComponent},
+      {path: "feed", component: TemplatePubComponent},
       {path: '', redirectTo: "perfil", pathMatch: 'full'}
   ]},
   { path: '**', component: NoHalladoComponent }

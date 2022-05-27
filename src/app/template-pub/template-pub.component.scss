@@ -1,0 +1,112 @@
+ion-card {
+  width: 80%;
+  margin: 2rem auto;
+}
+
+ion-card-content {
+  padding: 0;
+}
+
+#publicacion {
+  width: 100%;
+  height: auto;
+}
+
+#foto-publicador {
+  border-radius: 100%;
+  width: 10vw;
+  height: 10vw;
+  object-fit: cover;
+}
+
+#nombre {
+  color: var(--ion-text-color);
+  font-size: 1.3rem;
+  display: flex;
+}
+
+#nombre strong {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1rem;
+  margin: auto 0;
+}
+
+#menu-boton {
+  display: flex;
+}
+
+#eliminar-boton {
+  display: flex;
+}
+
+#editar-boton {
+  display: flex;
+}
+/*Botón guardar desc*/
+.boton {
+  margin: auto;
+  display: block;
+  width: 100%;
+  border: 1px #cbcbcb solid;
+  border-radius: 3px;
+  text-align: center;
+  cursor: pointer;
+  user-select: none;
+}
+
+.boton div {
+  color: var(--ion-text-color);
+  padding: 0.5rem;
+  font-weight: 700;
+}
+/*----*/
+.icon-destruct {
+  color:crimson;
+}
+
+ion-icon {
+  margin: auto 0;
+  color: var(--ion-text-color);
+  font-size: 6vw;
+}
+
+#caption {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--ion-text-color);
+}
+
+ion-icon:hover {
+  cursor: pointer;
+  color: #4c8dff;
+}
+
+.icon-destruct:hover {
+  color: black;
+}
+
+img:hover {
+  cursor: pointer;
+}
+
+/*Otros*/
+ion-input {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--ion-text-color);
+  border-bottom: #cbcbcb solid 1px;
+  margin-bottom: 1rem;
+}
+
+ion-row p {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--ion-text-color);
+  padding-left: 8px;
+}
+
+p {
+  font-weight: 500;
+}

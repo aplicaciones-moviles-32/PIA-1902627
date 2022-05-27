@@ -1,0 +1,74 @@
+<ion-card>
+  <ion-card-header>
+    <!--Encabezado publicacion-->
+    <ion-grid>
+      <ion-row>
+        <ion-col size="2"><img [src]=imagenUsuario id="foto-publicador"></ion-col>
+        <ion-col id="nombre"><strong>{{datosPerf.nombre}}</strong></ion-col>
+        <!--
+        <ion-col size="1.5" id="eliminar-boton">
+          <ion-icon name="trash-outline" (click)="presentAlert()" class="icon-destruct"></ion-icon>
+        </ion-col>
+        <ion-col size="1.5" id="editar-boton" (click)="mostrarEdicion()">
+          <ion-icon name="pencil-outline"></ion-icon>
+        </ion-col>-->
+        <ion-col size="1.5" id="menu-boton">
+          <ion-icon name="ellipsis-horizontal-outline" id="trigger-button"></ion-icon>
+        </ion-col>   
+      </ion-row>
+      <ion-popover trigger="trigger-button" dismissOnSelect>
+        <ng-template>
+          <ion-list mode="ios">
+            <ion-item button detail="false" (click)="mostrarEdicion()">
+              <ion-label color="primary">Editar publicación</ion-label>
+            </ion-item>
+            <ion-item button detail="false" (click)="presentAlert()">
+              <ion-label color="danger">Eliminar publicación</ion-label>
+            </ion-item>
+          </ion-list>
+        </ng-template>
+      </ion-popover>
+      <!--Editar publicacion-->
+      <ion-row *ngIf="editando">
+        <ion-grid>
+          <ion-row><p>Nueva Descripción</p></ion-row>
+          <ion-row><ion-input [(ngModel)]="nuevadesc"></ion-input></ion-row>
+          <ion-row>
+            <ion-col>
+              <div class="boton" (click)="guardarEdicion()"><div>Guardar</div></div>
+            </ion-col>
+            <ion-col>
+              <div class="boton" (click)="cerrarEdicion()"><div>Cerrar</div></div>
+            </ion-col>
+          </ion-row>
+          <ion-row *ngIf="mensaje"><p>{{mensaje}}</p></ion-row>
+        </ion-grid>
+      </ion-row>
+    </ion-grid>
+  </ion-card-header>
+
+  <ion-card-content>
+    <!--Imagen publicacion-->
+    <img [src]=imagenMostrar alt="" id="publicacion">
+    <!--Pie de la publicación-->
+    <ion-grid>
+      <ion-row>
+        <ion-col size="1.5">
+          <ion-icon name="heart-outline"></ion-icon>
+        </ion-col>
+        <ion-col size="1.5">
+          <ion-icon name="chatbubble-outline"></ion-icon>
+        </ion-col>
+        <ion-col size="1.5">
+          <ion-icon name="paper-plane-outline"></ion-icon>
+        </ion-col>
+        <ion-col>
+        </ion-col>
+        <ion-col size="1.5">
+          <ion-icon name="bookmark-outline"></ion-icon>
+        </ion-col>
+      </ion-row>
+      <ion-row><ion-col id="caption">{{publicacionvar.descripcion}}</ion-col></ion-row>
+    </ion-grid>
+  </ion-card-content>
+</ion-card>

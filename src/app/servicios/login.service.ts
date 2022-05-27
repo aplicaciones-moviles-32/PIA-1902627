@@ -4,9 +4,9 @@ from '@angular/core';
 import { Auth, signInWithEmailAndPassword, 
         createUserWithEmailAndPassword, 
         authState, signOut,User } from '@angular/fire/auth';
-
-import { Database, set, ref, push, update } from '@angular/fire/database';
-import { Storage, ref as stref, uploadBytes, UploadResult} from '@angular/fire/storage';
+import { PopoverController } from '@ionic/angular';
+import { Database, set, ref, push, update, remove } from '@angular/fire/database';
+import { Storage, ref as stref, uploadBytes, UploadResult, deleteObject} from '@angular/fire/storage';
 import { v4 } from 'uuid';
 import { perfil, publicacion } from '../modelos/interfaces';
 
@@ -93,5 +93,13 @@ export class LoginService {
     let path = ref(this.db,"publicacion/" + this.user.uid);
     let pubId = push(path);
     return set(pubId,pub);
+  }
+
+  eliminarPublicacion(usuario: string, pubId: string) {
+    return remove(ref(this.db,"publicacion/" + usuario + "/" + pubId))
+  }
+
+  eliminarFotoStorage(usuario: string, pubId: string) {
+    return deleteObject(stref(this.store,"publicacion/"+usuario + "/" + pubId));
   }
 }
