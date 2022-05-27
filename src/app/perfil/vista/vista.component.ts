@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LoginService } from 'src/app/servicios/login.service';
 import { ref, Database, onValue} from '@angular/fire/database';
 import { Storage, getDownloadURL, ref as stref } from '@angular/fire/storage';
+import { publicacion } from 'src/app/modelos/interfaces';
 
 @Component({
   selector: 'app-vista',
@@ -16,7 +17,8 @@ export class VistaComponent implements OnInit {
     this.ObtenerPublicaciones();
   }
 
-  Publicaciones = [];
+  //Cada elemento de Publicaciones es de la forma {key, value: Publicacion}
+  Publicaciones: elemento[] = [];
   desuscribir: any = null;
   ultKey: string|null = null;
   imagenes = {};
@@ -29,7 +31,7 @@ export class VistaComponent implements OnInit {
         this.desuscribir = onValue(ref(this.db,"publicacion/" + user.uid), datos => {
           this.Publicaciones = [];
           datos.forEach(child => {
-            let el = {key: child.key, value: child.val()};
+            let el: elemento = {key: child.key, value: child.val()};
             this.Publicaciones.push(el);
           })
           this.Publicaciones.reverse();
@@ -46,10 +48,21 @@ export class VistaComponent implements OnInit {
   }
   
   obtenerFotos() {
-    this.Publicaciones.forEach( pub => {
-      getDownloadURL(stref(this.str, pub.value.imagen)).then(url => {
-        this.imagenes[pub.key] = url;
-      })
-    })
-  }
+    for(const pub of this.Publicaciones) {
+      try {
+        getDownloadURL(stref(this.str, pub.value.imagen))
+        .then(url => {
+          this.imagenes[pub.key] = url;
+        })
+      }
+      catch(error) { 
+        console.log(error);
+      }
+    }
+  };
+}
+
+export interface elemento {
+  key: string,
+  value: publicacion
 }

@@ -10,7 +10,9 @@
   <ion-grid>
     <ion-row>
       <ion-col *ngFor="let publicacion of Publicaciones" size="4" class="publicaciones">
-        <div><img [src]="imagenes[publicacion.key]"></div>
+        <div [routerLink]="['/publicacion',publicacion.key,publicacion.value.usuario]">
+          <img [src]="imagenes[publicacion.key]">
+        </div>
       </ion-col>
     </ion-row>
   </ion-grid>

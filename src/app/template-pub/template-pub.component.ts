@@ -92,7 +92,7 @@ export class TemplatePubComponent implements OnInit {
   async presentAlert() {
     const alert = await this.alert.create({
       header: 'Aviso',
-      message: '¿Quiere eliminar esta phblicación?',
+      message: '¿Quiere eliminar esta publicación?',
       buttons: [
         {
           text: 'Eliminar',
@@ -110,7 +110,7 @@ export class TemplatePubComponent implements OnInit {
   }
 
   eliminarPublicacion() {
-    this.log.eliminarFotoStorage(this.publicacionvar.usuario, this.key);
+    this.log.eliminarFotoStorage(this.publicacionvar.imagen);
     this.log.eliminarPublicacion(this.publicacionvar.usuario, this.key);
   }
 }

@@ -99,7 +99,7 @@ export class LoginService {
     return remove(ref(this.db,"publicacion/" + usuario + "/" + pubId))
   }
 
-  eliminarFotoStorage(usuario: string, pubId: string) {
-    return deleteObject(stref(this.store,"publicacion/"+usuario + "/" + pubId));
+  eliminarFotoStorage(imagenPath: string) {
+    return deleteObject(stref(this.store,imagenPath));
   }
 }
