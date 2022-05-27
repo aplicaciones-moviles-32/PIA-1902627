@@ -4,9 +4,27 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
-  <div>{{mensaje}}</div>
-  <ion-button (click)="tomarFoto()">Tomar Foto</ion-button>
-  <ion-input [(ngModel)]="descripcion">Descripción</ion-input>
-  <ion-button (click)="crearPublicacion()">Publicar</ion-button>
-  <img [src]=omitirSeguridad(fotourl) alt="" *ngIf="fotourl">
+  
+  <ion-card>
+    <ion-card-header>
+      Nueva publicación
+    </ion-card-header>
+    <ion-card-content>
+      <ion-grid>
+        <ion-row><p>Descripción</p></ion-row>
+        <ion-row><ion-input [(ngModel)]="descripcion"></ion-input></ion-row>
+        <ion-row id="cont-boton">
+          <div class="boton" (click)="tomarFoto()"><div>Escoger foto</div></div>
+        </ion-row>
+        <ion-row><img [src]=omitirSeguridad(fotourl) *ngIf="fotourl"></ion-row>
+        <ion-row>
+          <div class="boton" (click)="crearPublicacion()"><div>Subir Publicación</div></div>
+        </ion-row>
+        <ion-row>
+          <div>{{mensaje}}</div>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+  
 </ion-content>

@@ -3,7 +3,7 @@
 }
 
 ion-input {
-  border: 1px #cbcbcb solid;
+  border-bottom: 1px #cbcbcb solid;
 }
 
 .centrador {
@@ -29,7 +29,6 @@ ion-input {
 }
 //Formato foto de perfil
 #contenedor {
-  padding-left: 3rem;
   display: flex;
   vertical-align: middle;
 }
@@ -58,21 +57,20 @@ ion-avatar {
 }
 
 /*Datos*/
-.nombre {
-  padding-left: 3rem;
-}
-.descripcion {
-  padding-left: 3rem;
-}
 .c1 {
   display: flex;
   text-align: center;
   align-items: center;
 }
 
+.c1 div {
+  width: 100%;
+}
+
 /*botón*/
 .boton {
-  margin: auto;
+  margin-left: auto;
+  margin-right: auto;
   display: block;
   width: 100%;
   border: 1px #cbcbcb solid;
@@ -85,4 +83,10 @@ ion-avatar {
 .boton div {
   padding: 0.5rem;
   font-weight: 700;
+}
+
+@media (max-width: 500px) {
+  .c1 div p{
+    font-size: 0.5rem;
+  }
 }

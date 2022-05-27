@@ -1,8 +1,9 @@
 <ion-header collapse="fade">
   <ion-toolbar>
     <ion-title>Instagram</ion-title>
-    <ion-avatar slot="primary" id="log-pfp"><img [src]=></ion-avatar>
-    <ion-button (click)="logout()" slot="primary">Cerrar Sesión</ion-button>
+    <ion-avatar slot="primary" id="log-pfp" (click)="presentPopover($event)">
+      <img [src]="fotoPerf">
+    </ion-avatar>
   </ion-toolbar>
 </ion-header>
 

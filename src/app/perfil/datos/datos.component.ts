@@ -51,6 +51,7 @@ export class DatosComponent implements OnInit {
           }
       })}
       else {
+        console.log("alguien cerró sesión");
         if(this.desuscribir) {
           this.desuscribir();
       }}}

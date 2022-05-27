@@ -16,13 +16,15 @@ import { DatosComponent } from './perfil/datos/datos.component';
 import { VistaComponent } from './perfil/vista/vista.component';
 import { VistaTabsComponent } from './vista-tabs/vista-tabs.component';
 import { NuevaPublicacionComponent } from './nueva-publicacion/nueva-publicacion.component';
+import { PopoverPerfComponent } from './vista-tabs/popover-perf/popover-perf.component';
 
 @NgModule({
   declarations: [AppComponent,
                 DatosComponent,
                 VistaComponent,
                 VistaTabsComponent,
-                NuevaPublicacionComponent],
+                NuevaPublicacionComponent,
+                PopoverPerfComponent],
   entryComponents: [],
   imports: [
             HomePageModule,
