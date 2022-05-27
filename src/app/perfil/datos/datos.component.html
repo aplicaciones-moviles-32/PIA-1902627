@@ -1,14 +1,13 @@
-<ion-grid>
+<ion-grid id="grid-ext">
   <ion-row>
     <ion-col size=4 id="col-foto">
       <ion-row>
         <div id="contenedor">
           <div id="outline">
-            <ion-avatar><img src="assets/foto-prueba.jpg" id="foto-perfil"></ion-avatar>
+            <ion-avatar><img [src]=fotoPerf id="foto-perfil"></ion-avatar>
           </div>
         </div>
       </ion-row>
-      <!--<ion-row>{{datos.fotoperf}}</ion-row>-->
     </ion-col>
     <ion-col class="c1"><div>
         <strong>100</strong>
@@ -26,6 +25,25 @@
   <ion-row class="nombre"><strong>{{datos.nombre}}</strong></ion-row>
   <ion-row class="descripcion"><p>{{datos.bio}}</p></ion-row>
   <ion-row>
-    <div class="boton"><div>Editar Perfil</div></div>
+    <div class="boton" (click)="mostrarEdicion()" *ngIf="!editando"><div>Editar Perfil</div></div>
   </ion-row>
+  <div *ngIf="editando">
+    <ion-row>
+      <ion-col size="2" id="mod-foto">
+        <div class="centrador"><ion-avatar><img [src]="omitirSeguridad(nuevafotoUrl)"></ion-avatar></div>
+        <div class="centrador"><div id ="overlay" (click)="tomarFoto()"><img src="assets/overlay.png" id="shw"></div></div>
+      </ion-col>
+      <ion-col>
+        <ion-row><p>Nombre</p></ion-row>
+        <ion-row><ion-input [(ngModel)]="nuevoNombre"></ion-input></ion-row>
+        <ion-row><p>Descripcion</p></ion-row>
+        <ion-row><ion-input [(ngModel)]="nuevaDesc"></ion-input></ion-row>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col><div class="boton" (click)="modificarDatos()"><div>Guardar</div></div></ion-col>
+      <ion-col><div class="boton" (click)="cancelarEdicion()"><div>Cancelar</div></div></ion-col>
+    </ion-row>
+  </div>
+  
 </ion-grid>

@@ -1,7 +1,32 @@
-ion-grid {
+#grid-ext {
   width: 95%;
 }
 
+ion-input {
+  border: 1px #cbcbcb solid;
+}
+
+.centrador {
+  position: absolute;
+  top: 2rem;
+  width: 100%;
+}
+#mod-foto ion-avatar {
+  margin: 0 auto;
+  width: 5rem;
+  height: 5rem;
+}
+#overlay {
+  margin: 0 auto;
+  width: 5rem;
+  height: 5rem;
+  border-radius: 100%;
+  opacity: 40%;
+}
+#overlay:hover {
+  opacity: 50%;
+  cursor: pointer;
+}
 //Formato foto de perfil
 #contenedor {
   padding-left: 3rem;

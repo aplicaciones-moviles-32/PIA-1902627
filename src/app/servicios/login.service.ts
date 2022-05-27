@@ -5,7 +5,7 @@ import { Auth, signInWithEmailAndPassword,
         createUserWithEmailAndPassword, 
         authState, signOut,User } from '@angular/fire/auth';
 
-import { Database, set, ref, push } from '@angular/fire/database';
+import { Database, set, ref, push, update } from '@angular/fire/database';
 import { Storage, ref as stref, uploadBytes, UploadResult} from '@angular/fire/storage';
 import { v4 } from 'uuid';
 import { perfil, publicacion } from '../modelos/interfaces';
@@ -61,6 +61,26 @@ export class LoginService {
     //Sube foto
     resultado =  await uploadBytes(path,imagen).then(res => res);
     return resultado;
+  }
+
+  async nuevaFotoPerfil(foto: string) {
+    let resultado: null|UploadResult = null;
+    let path = stref(this.store,"fotosPerf/" + this.user.uid + "/foto");
+    //Obtiene foto
+    let imagen = await fetch(foto).then(f=>f.blob());
+    //Sube foto
+    resultado =  await uploadBytes(path,imagen).then(res => res);
+    return resultado;
+  }
+
+  modificarDatos(nNombre: string, nDesc: string, nFoto: string) {
+    let path= ref(this.db,"usuario/" + this.user.uid);
+    if(nFoto) {
+      return update(path,{bio: nDesc, nombre: nNombre, fotoperf: nFoto})
+    }
+    else {
+      return update(path,{bio: nDesc, nombre: nNombre});
+    }
   }
 
   async nuevaPublicacion(fotopath: string, descrip: string) {

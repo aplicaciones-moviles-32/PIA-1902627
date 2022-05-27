@@ -34,7 +34,6 @@ export class VistaComponent implements OnInit {
           })
           this.Publicaciones.reverse();
           this.obtenerFotos();
-          console.log(this.Publicaciones);
         })
       }
       else {
@@ -50,7 +49,6 @@ export class VistaComponent implements OnInit {
     this.Publicaciones.forEach( pub => {
       getDownloadURL(stref(this.str, pub.value.imagen)).then(url => {
         this.imagenes[pub.key] = url;
-        console.log(url);
       })
     })
   }
