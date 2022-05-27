@@ -1,0 +1,63 @@
+ion-grid {
+  width: 95%;
+}
+
+//Formato foto de perfil
+#contenedor {
+  padding-left: 3rem;
+  display: flex;
+  vertical-align: middle;
+}
+#outline {
+  min-width: fit-content;
+  display: inline-block;
+  align-items: center;
+  padding: 0.2rem;
+  background-image: linear-gradient(
+    0deg,
+    rgba(222, 0, 70, 1) 0%,
+    rgba(247, 163, 75, 1) 100%
+  );
+  border-radius: 50%;
+}
+ion-avatar {
+  width: 6rem;
+  height: 6rem;
+}
+
+#foto-perfil {
+  vertical-align: middle;
+  border-radius: 50%;
+  border: solid 0.2rem;
+  border-color: var(--ion-color-light);
+}
+
+/*Datos*/
+.nombre {
+  padding-left: 3rem;
+}
+.descripcion {
+  padding-left: 3rem;
+}
+.c1 {
+  display: flex;
+  text-align: center;
+  align-items: center;
+}
+
+/*botón*/
+.boton {
+  margin: auto;
+  display: block;
+  width: 100%;
+  border: 1px #cbcbcb solid;
+  border-radius: 3px;
+  text-align: center;
+  cursor: pointer;
+  user-select: none;
+}
+
+.boton div {
+  padding: 0.5rem;
+  font-weight: 700;
+}

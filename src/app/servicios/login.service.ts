@@ -74,6 +74,4 @@ export class LoginService {
     let pubId = push(path);
     return set(pubId,pub);
   }
-
-  
 }

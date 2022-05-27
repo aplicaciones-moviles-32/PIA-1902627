@@ -1,14 +1,31 @@
 <ion-grid>
   <ion-row>
-    <ion-col>
-      <ion-row>{{datos.fotoperf}}</ion-row>
-      <ion-row>{{datos.nombre}}</ion-row>
+    <ion-col size=4 id="col-foto">
+      <ion-row>
+        <div id="contenedor">
+          <div id="outline">
+            <ion-avatar><img src="assets/foto-prueba.jpg" id="foto-perfil"></ion-avatar>
+          </div>
+        </div>
+      </ion-row>
+      <!--<ion-row>{{datos.fotoperf}}</ion-row>-->
     </ion-col>
-    <ion-col><ion-row>
-        <ion-col>SIGUIENDO</ion-col>
-        <ion-col>SEGUIDORES</ion-col>
-        <ion-col>PUBLICACIONES</ion-col>
-    </ion-row></ion-col>
+    <ion-col class="c1"><div>
+        <strong>100</strong>
+        <p>Siguiendo</p>
+    </div></ion-col>
+    <ion-col class="c1"><div >
+      <strong>100</strong>
+      <p>Seguidores</p>
+    </div></ion-col>
+    <ion-col class="c1"><div>
+      <strong>100</strong>
+      <p>Publicaciones</p>
+    </div></ion-col>
   </ion-row>
-  <ion-row>{{datos.bio}}</ion-row>
+  <ion-row class="nombre"><strong>{{datos.nombre}}</strong></ion-row>
+  <ion-row class="descripcion"><p>{{datos.bio}}</p></ion-row>
+  <ion-row>
+    <div class="boton"><div>Editar Perfil</div></div>
+  </ion-row>
 </ion-grid>

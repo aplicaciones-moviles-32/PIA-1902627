@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from 'src/app/servicios/login.service';
-import { orderByKey, query, ref, Database, limitToLast, onValue} from '@angular/fire/database';
+import { ref, Database, onValue} from '@angular/fire/database';
+import { Storage, getDownloadURL, ref as stref } from '@angular/fire/storage';
 
 @Component({
   selector: 'app-vista',
@@ -9,16 +10,48 @@ import { orderByKey, query, ref, Database, limitToLast, onValue} from '@angular/
 })
 export class VistaComponent implements OnInit {
 
-  constructor(private lgn: LoginService, private db: Database) { }
+  constructor(private lgn: LoginService, private db: Database, private str: Storage) { }
 
   ngOnInit() {
-    this.ObtenerPublicacionesInicio();
+    this.ObtenerPublicaciones();
   }
 
-  ObtenerPublicacionesInicio() {
-    let refPubs = query(ref(this.db,"publicacion/" + this.lgn.user.uid), limitToLast(20), orderByKey())
-    return onValue(refPubs,snapshot => {
-      console.log(snapshot);
+  Publicaciones = [];
+  desuscribir: any = null;
+  ultKey: string|null = null;
+  imagenes = {};
+
+  ObtenerPublicaciones() {
+    //Actualiza cada que cambia el usuario
+    this.lgn.obtenerUsuario().subscribe( user => { 
+      if(user) {
+        //Actualiza cada que hay cambio en publicaciones del usuario
+        this.desuscribir = onValue(ref(this.db,"publicacion/" + user.uid), datos => {
+          this.Publicaciones = [];
+          datos.forEach(child => {
+            let el = {key: child.key, value: child.val()};
+            this.Publicaciones.push(el);
+          })
+          this.Publicaciones.reverse();
+          this.obtenerFotos();
+          console.log(this.Publicaciones);
+        })
+      }
+      else {
+        //Deja de buscar actualizaciones cuando se cierra sesión
+        if(this.desuscribir) {
+          this.desuscribir();
+        }
+      }
+    })
+  }
+  
+  obtenerFotos() {
+    this.Publicaciones.forEach( pub => {
+      getDownloadURL(stref(this.str, pub.value.imagen)).then(url => {
+        this.imagenes[pub.key] = url;
+        console.log(url);
+      })
     })
   }
 }

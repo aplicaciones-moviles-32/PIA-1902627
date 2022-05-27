@@ -33,12 +33,10 @@ export class DatosComponent implements OnInit {
           let datos = perf.val();
           this.datos = datos;
           console.log(datos);
-        })}
+      })}
       else {
         if(this.desuscribir) {
           this.desuscribir();
-          console.log("Desuscrito");
-        }}}
-    )
-  }
+      }}}
+  )}
 }

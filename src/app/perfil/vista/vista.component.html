@@ -4,5 +4,14 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
+  <!--Datos Perfil-->
   <app-datos></app-datos>
+  <!--Publicaciones-->
+  <ion-grid>
+    <ion-row>
+      <ion-col *ngFor="let publicacion of Publicaciones" size="4" class="publicaciones">
+        <div><img [src]="imagenes[publicacion.key]"></div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
