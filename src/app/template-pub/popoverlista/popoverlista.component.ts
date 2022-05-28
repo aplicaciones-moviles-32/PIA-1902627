@@ -14,5 +14,6 @@ export class PopoverlistaComponent implements OnInit {
 
   async closeModal(datos: string) {
     await this.controller.dismiss(datos);
+    
   }
 }

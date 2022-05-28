@@ -22,7 +22,7 @@ export class NuevaPublicacionComponent implements OnInit {
     try {
       const capturedPhoto = await Camera.getPhoto({
         resultType: CameraResultType.Uri,
-        source: CameraSource.Camera,
+        source: CameraSource.Prompt,
         quality: 90,
         width: 480,
       });

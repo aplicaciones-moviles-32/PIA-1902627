@@ -103,6 +103,7 @@ export class TemplatePubComponent implements OnInit {
           text: 'Eliminar',
           handler: () => {
             this.eliminarPublicacion();
+            this.ruta.navigate(['/inicio'], {queryParams: {userId: 'me'}});
           }
         },
         {
@@ -135,7 +136,7 @@ export class TemplatePubComponent implements OnInit {
     let res = await popover.onDidDismiss();
     switch(res.data) {
       case 'eliminar':
-        this.presentAlert();
+        this.presentAlert()
         break;
       case 'editar':
         this.mostrarEdicion();

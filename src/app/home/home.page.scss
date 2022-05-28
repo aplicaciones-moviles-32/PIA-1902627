@@ -37,3 +37,8 @@ ion-button {
   width: 100%;
 }
 
+@media (width < 750px) {
+  .contenedor-login {
+    width: 80%;
+  }
+}

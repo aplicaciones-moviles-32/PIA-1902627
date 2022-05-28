@@ -29,11 +29,11 @@
   </ion-row>
   <div *ngIf="editando">
     <ion-row>
-      <ion-col size="2" id="mod-foto">
+      <ion-col sizeMd="2" sizeSm="3" id="mod-foto">
         <div class="centrador"><ion-avatar><img [src]="omitirSeguridad(nuevafotoUrl)"></ion-avatar></div>
         <div class="centrador"><div id ="overlay" (click)="tomarFoto()"><img src="assets/overlay.png" id="shw"></div></div>
       </ion-col>
-      <ion-col>
+      <ion-col sizeMd="10" sizeSm="9">
         <ion-row><p>Nombre</p></ion-row>
         <ion-row><ion-input [(ngModel)]="nuevoNombre"></ion-input></ion-row>
         <ion-row><p>Descripción</p></ion-row>
