@@ -20,7 +20,7 @@ ion-card-content {
 }
 
 #nombre {
-  color: var(--ion-text-color);
+  color: var(--ion-text-color, #000);
   font-size: 1.3rem;
   display: flex;
 }
@@ -55,7 +55,7 @@ ion-card-content {
 }
 
 .boton div {
-  color: var(--ion-text-color);
+  color: var(--ion-text-color, #000);
   padding: 0.5rem;
   font-weight: 700;
 }
@@ -66,7 +66,7 @@ ion-card-content {
 
 ion-icon {
   margin: auto 0;
-  color: var(--ion-text-color);
+  color: var(--ion-text-color, #000);
   font-size: 6vw;
 }
 
@@ -74,7 +74,7 @@ ion-icon {
   font-family: Roboto, "Helvetica Neue", sans-serif;
   font-size: 1rem;
   font-weight: 400;
-  color: var(--ion-text-color);
+  color: var(--ion-text-color, #000);
 }
 
 ion-icon:hover {
@@ -94,7 +94,7 @@ img:hover {
 ion-input {
   font-size: 1rem;
   font-weight: 500;
-  color: var(--ion-text-color);
+  color: var(--ion-text-color, #000);
   border-bottom: #cbcbcb solid 1px;
   margin-bottom: 1rem;
 }
@@ -103,7 +103,7 @@ ion-row p {
   font-family: Roboto, "Helvetica Neue", sans-serif;
   font-weight: 600;
   font-size: 1rem;
-  color: var(--ion-text-color);
+  color: var(--ion-text-color, #000);
   padding-left: 8px;
 }
 

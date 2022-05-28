@@ -6,6 +6,8 @@ import { Database, get, ref, update} from '@angular/fire/database';
 import { AlertController } from '@ionic/angular';
 import { LoginService } from '../servicios/login.service';
 import { Router } from '@angular/router';
+import { PopoverlistaComponent } from './popoverlista/popoverlista.component';
+import { PopoverController } from '@ionic/angular';
 
 @Component({
   selector: 'app-template-pub',
@@ -14,7 +16,7 @@ import { Router } from '@angular/router';
 })
 export class TemplatePubComponent implements OnInit {
 
-  constructor(private Stre: Storage, private db: Database, private alert: AlertController, private log: LoginService, private ruta: Router) { }
+  constructor(private Stre: Storage, private db: Database, private alert: AlertController, private log: LoginService, private ruta: Router, private Pop: PopoverController) { }
 
   ngOnInit() {
   }
@@ -59,10 +61,12 @@ export class TemplatePubComponent implements OnInit {
 
   @Input() 
   public set publicacion(value: publicacion) {
-    this.publicacionvar = value;
-    //Obtiene imagen de la publicación
-    this.obtenerimagenpub();
-    this.obtenerdatosperf();
+    if(value) {
+      //Obtiene imagen de la publicación
+      this.publicacionvar = value;
+      this.obtenerimagenpub();
+      this.obtenerdatosperf();
+    }
   };
   
   //Funciones editar
@@ -117,5 +121,25 @@ export class TemplatePubComponent implements OnInit {
 
   verPerfil() {
     this.ruta.navigate(['/inicio/perfil'], {queryParams: {userId: this.publicacionvar.usuario}});
+  }
+
+  async popover(ev: any) {
+    const popover = await this.Pop.create({
+      component: PopoverlistaComponent,
+      cssClass: 'my-custom-class',
+      event: ev,
+      translucent: true
+    });
+    await popover.present();
+  
+    let res = await popover.onDidDismiss();
+    switch(res.data) {
+      case 'eliminar':
+        this.presentAlert();
+        break;
+      case 'editar':
+        this.mostrarEdicion();
+        break;
+    }
   }
 }

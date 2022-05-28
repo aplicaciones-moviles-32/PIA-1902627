@@ -20,6 +20,7 @@ import { PopoverPerfComponent } from './vista-tabs/popover-perf/popover-perf.com
 import { TemplatePubComponent } from './template-pub/template-pub.component';
 import { PublicacionDetalleComponent } from './publicacion-detalle/publicacion-detalle.component';
 import { FeedComponent } from './feed/feed.component';
+import { PopoverlistaComponent } from './template-pub/popoverlista/popoverlista.component';
 
 @NgModule({
   declarations: [AppComponent,
@@ -30,7 +31,8 @@ import { FeedComponent } from './feed/feed.component';
                 PopoverPerfComponent,
                 TemplatePubComponent,
                 PublicacionDetalleComponent,
-                FeedComponent
+                FeedComponent,
+                PopoverlistaComponent
                 ],
   entryComponents: [],
   imports: [

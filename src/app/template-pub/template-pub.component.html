@@ -6,21 +6,9 @@
         <ion-col size="2"><img [src]=imagenUsuario id="foto-publicador" (click)="verPerfil()"></ion-col>
         <ion-col id="nombre"><strong>{{datosPerf.nombre}}</strong></ion-col>
         <ion-col size="1.5" id="menu-boton">
-          <ion-icon name="ellipsis-horizontal-outline" id="trigger-button"></ion-icon>
+          <ion-icon name="ellipsis-horizontal-outline" (click)="popover($event)"></ion-icon>
         </ion-col>   
       </ion-row>
-      <ion-popover trigger="trigger-button" dismissOnSelect>
-        <ng-template>
-          <ion-list mode="ios">
-            <ion-item button detail="false" (click)="mostrarEdicion()">
-              <ion-label color="primary">Editar publicación</ion-label>
-            </ion-item>
-            <ion-item button detail="false" (click)="presentAlert()">
-              <ion-label color="danger">Eliminar publicación</ion-label>
-            </ion-item>
-          </ion-list>
-        </ng-template>
-      </ion-popover>
       <!--Editar publicacion-->
       <ion-row *ngIf="editando">
         <ion-grid>
