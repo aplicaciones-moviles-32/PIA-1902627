@@ -11,11 +11,10 @@ import { Router } from '@angular/router';
 export class AppComponent {
   //Carga el inicio si ya inició sesión
   constructor(private log: LoginService, private ruta: Router) {
-    /*
     log.obtenerUsuario().subscribe(user => {
       if(!user) {
         ruta.navigate(['/auth']);
       }
-    })*/
+    })
   }
 }

@@ -13,9 +13,9 @@ export class HomePage {
   
   constructor(private auth: LoginService, private ruta: Router,public alertController: AlertController) {
     //Carga el inicio si ya inició sesión
-    auth.obtenerUsuario().subscribe(user=> {
+    let unsuscribe = auth.obtenerUsuario().subscribe(user=> {
       if(user) {
-        this.ruta.navigate(['/inicio']);
+        this.ruta.navigate(['/inicio'], {queryParams: {userId: 'me'}});
       }})
   }
 

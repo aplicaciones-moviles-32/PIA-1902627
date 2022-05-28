@@ -38,17 +38,17 @@ export class NuevaPublicacionComponent implements OnInit {
     if(this.fotourl) {
       this.mensaje = "Cargando: Creando publicación...";
       //Sube foto
-      this.login.nuevaFoto(this.fotourl)
-      .then (res => {
-        //Crea publicacion con referencia a la foto
-        this.login.nuevaPublicacion(res.metadata.fullPath,this.descripcion)
-      })
-      .then( res2 => {
-        this.mensaje = "Tu publicación ha sido creada exitosamente";
-      }).catch( err => {
-        console.log(err);
-        this.mensaje = "Error: No se pudo crear tu publicación";
-      })
+        this.login.nuevaFoto(this.fotourl)
+        .then (res => {
+          //Crea publicacion con referencia a la foto
+          return this.login.nuevaPublicacion(res.metadata.fullPath,this.descripcion)
+        })
+        .then( res2 => {
+          this.mensaje = "Tu publicación ha sido creada exitosamente";
+        }).catch(error=>{
+          console.log(error);
+          this.mensaje = "Hubo un error al crear la publicación";
+        })
     }
     else {
       this.mensaje = "Alerta: Necesitas escoger una foto";

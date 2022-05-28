@@ -19,8 +19,8 @@ export class DatosComponent implements OnInit {
     this.obtenerdatos();
   }
 
-  @Input()
-  user_target_id: string = "";
+  @Input() user_target_id: string = "";
+  @Input() actualizar: boolean = false;
   es_actual: boolean = false;  //Es true si el usuario visto es el loggeado
   desuscribir: any = null;
 
@@ -42,23 +42,29 @@ export class DatosComponent implements OnInit {
     //Se suscribe a la obtención del usuario que inició sesión
     this.log.obtenerUsuario().subscribe(user => {
       if(user) {
-        user.uid == this.user_target_id ? this.es_actual = true : this.es_actual = false; 
-        let refr = ref(this.db,"usuario/" + this.user_target_id);
-        //Crea observador que muestra cada que se actualizan los datos del usuario que se ve
-        this.desuscribir = onValue(refr, perf => {
-          let datos = perf.val();
-          this.datos = perf.val();
-          console.log(datos);
-          if(datos.fotoperf) {
-            this.obtenerFotoPerf().then(url => {this.fotoPerf = url;})
-          }
-        })
+        this.callbackusuario(user.uid);
       }
       else {
         console.log("alguien cerró sesión");
         if(this.desuscribir) {this.desuscribir();}
       }}
   )}
+
+  callbackusuario(usuarioid) {
+    usuarioid == this.user_target_id ? this.es_actual = true : this.es_actual = false; 
+    let refr = ref(this.db,"usuario/" + this.user_target_id);
+    //Crea observador que muestra cada que se actualizan los datos del usuario que se ve
+    this.desuscribir = onValue(refr, 
+      perf => {
+        let datos = perf.val();
+        this.datos = perf.val();
+        console.log(datos);
+        if(datos.fotoperf) {
+          this.obtenerFotoPerf().then(url => {this.fotoPerf = url;})
+        }
+      }
+    )
+  };
 
   obtenerFotoPerf() {
     return getDownloadURL(stref(this.str,this.datos.fotoperf));

@@ -25,7 +25,7 @@
   <ion-row class="nombre"><strong>{{datos.nombre}}</strong></ion-row>
   <ion-row class="descripcion"><p>{{datos.bio}}</p></ion-row>
   <ion-row>
-    <div class="boton" (click)="mostrarEdicion()" *ngIf="!editando"><div>Editar Perfil</div></div>
+    <div class="boton" (click)="mostrarEdicion()" *ngIf="!editando && es_actual"><div>Editar Perfil</div></div>
   </ion-row>
   <div *ngIf="editando">
     <ion-row>

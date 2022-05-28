@@ -24,6 +24,7 @@ export class VistaComponent implements OnInit {
     })
   }
 
+  actualizar: boolean = true; //Se togle cada vez que se actualiza para actualizar al comp datos
   user_target_id: string = "";
   es_actual: boolean = false; //Es true si el usuario visto es el loggeado
 
@@ -36,28 +37,26 @@ export class VistaComponent implements OnInit {
   ObtenerPublicaciones() {
     //Actualiza cada que cambia el usuario
     this.lgn.obtenerUsuario().subscribe( user => { 
-      if(user) {
-        if(!this.user_target_id || this.user_target_id == 'me') {
-          this.user_target_id = user.uid;
-        }
-        //Actualiza cada que hay cambio en publicaciones del usuario
-        this.desuscribir = onValue(ref(this.db,"publicacion/" + this.user_target_id), datos => {
-          this.Publicaciones = [];
-          datos.forEach(child => {
-            let el: elemento = {key: child.key, value: child.val()};
-            this.Publicaciones.push(el);
-          })
-          this.Publicaciones.reverse();
-          this.obtenerFotos();
-        })
-      }
-      else {
-        //Deja de buscar actualizaciones cuando se cierra sesión
-        if(this.desuscribir) {this.desuscribir();}
-      }
+      user ? this.callbackUsuario(user.uid) : this.desuscribir();
     })
   }
   
+  callbackUsuario(userid) {
+    if(!this.user_target_id || this.user_target_id == 'me') {
+      this.user_target_id = userid;
+    }
+
+    //Actualiza cada que hay cambio en publicaciones del usuario
+    this.desuscribir = 
+    onValue(ref(this.db,"publicacion/" + this.user_target_id), 
+      datos => {
+        this.Publicaciones = [];
+        datos.forEach(child => {this.Publicaciones.push({key: child.key, value: child.val()});})
+        this.Publicaciones.reverse();
+        this.obtenerFotos();
+    })
+  }
+
   obtenerFotos() {
     for(const pub of this.Publicaciones) {
       try {
@@ -71,6 +70,15 @@ export class VistaComponent implements OnInit {
       }
     }
   };
+
+  //Recargar datos
+  doRefresh(event) {
+    this.callbackUsuario(this.user_target_id);
+    this.actualizar = !this.actualizar;
+    setTimeout(() => {
+      event.target.complete();
+    }, 1000);
+  }
 }
 
 export interface elemento {

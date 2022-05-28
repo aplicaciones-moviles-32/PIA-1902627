@@ -6,7 +6,7 @@
     </ion-card-header>
     <ion-grid>
       <ion-row><ion-col><ion-input [(ngModel)]="usuario.email"></ion-input></ion-col></ion-row>
-      <ion-row><ion-col><ion-input [(ngModel)]="usuario.password"></ion-input></ion-col></ion-row>
+      <ion-row><ion-col><ion-input [(ngModel)]="usuario.password" type="password"></ion-input></ion-col></ion-row>
       <ion-row>
       <ion-col><ion-button color="orange" (click)="login()">Iniciar sesión</ion-button></ion-col>
       <ion-col><ion-button color="orange" (click)="registrar()">Registrarse</ion-button></ion-col>

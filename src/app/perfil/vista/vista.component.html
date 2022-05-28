@@ -4,8 +4,11 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
   <!--Datos Perfil-->
-  <app-datos [user_target_id]="user_target_id"></app-datos>
+  <app-datos [user_target_id]="user_target_id" [actualizar]="actualizar"></app-datos>
   <!--Publicaciones-->
   <ion-grid>
     <ion-row>
