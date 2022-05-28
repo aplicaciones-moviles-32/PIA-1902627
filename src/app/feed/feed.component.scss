@@ -1,0 +1,10 @@
+#cont-pub {
+  margin: 0 auto;
+  width: 70vw;
+}
+
+@media (width < 450px) {
+  #cont-pub {
+    width: 80vw;
+  }
+}

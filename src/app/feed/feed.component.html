@@ -4,7 +4,7 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
-  <div *ngFor="let datospub of Publicaciones">
+  <div *ngFor="let datospub of Publicaciones" id="cont-pub">
     <app-template-pub [key]="datospub.key" [publicacion]="datospub.value"></app-template-pub>
   </div>
 </ion-content>

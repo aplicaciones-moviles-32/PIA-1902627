@@ -1,6 +1,7 @@
 <ion-header collapse="fade">
   <ion-toolbar>
     <ion-title>Instagram</ion-title>
+    <strong slot="primary" id="nombreperf">{{nombre}}</strong>
     <ion-avatar slot="primary" id="log-pfp" (click)="presentPopover($event)">
       <img [src]="fotoPerf">
     </ion-avatar>

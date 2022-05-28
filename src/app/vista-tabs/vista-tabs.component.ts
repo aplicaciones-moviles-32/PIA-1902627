@@ -16,11 +16,12 @@ export class VistaTabsComponent implements OnInit {
   constructor(private log: LoginService, private pop: PopoverController, private db: Database, private str: Storage, private rutas: Router) { }
 
   ngOnInit() {
-    this.obtenerFoto();
+    this.obtenerDatos();
   }
 
   fotoPerf = "assets/foto-pred.jpg";
-  
+  nombre = "";
+
   async presentPopover(ev: any) {
     const popover = await this.pop.create({
       component: PopoverPerfComponent,
@@ -34,11 +35,12 @@ export class VistaTabsComponent implements OnInit {
 
   desuscribir: any = null;
 
-  obtenerFoto() {
+  obtenerDatos() {
     this.log.obtenerUsuario().subscribe( user => {
       if(user) {
         let refr = ref(this.db,"usuario/" + user.uid);
         this.desuscribir = onValue(refr, perf => {
+          this.nombre = perf.val().nombre;
           if(perf.val().fotoperf) {
             getDownloadURL(stref(this.str,perf.val().fotoperf)).then(url => {
               this.fotoPerf = url;})

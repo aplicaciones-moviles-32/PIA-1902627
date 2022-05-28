@@ -110,3 +110,16 @@ ion-row p {
 p {
   font-weight: 500;
 }
+
+@media (width < 700px) {
+  ion-card {
+    width: 100%;
+  }
+}
+
+@media (width < 400px) {
+  #foto-publicador {
+    height: 8vw;
+    width: 8vw;
+  }
+}
