@@ -19,6 +19,7 @@ import { NuevaPublicacionComponent } from './nueva-publicacion/nueva-publicacion
 import { PopoverPerfComponent } from './vista-tabs/popover-perf/popover-perf.component';
 import { TemplatePubComponent } from './template-pub/template-pub.component';
 import { PublicacionDetalleComponent } from './publicacion-detalle/publicacion-detalle.component';
+import { FeedComponent } from './feed/feed.component';
 
 @NgModule({
   declarations: [AppComponent,
@@ -28,7 +29,8 @@ import { PublicacionDetalleComponent } from './publicacion-detalle/publicacion-d
                 NuevaPublicacionComponent,
                 PopoverPerfComponent,
                 TemplatePubComponent,
-                PublicacionDetalleComponent
+                PublicacionDetalleComponent,
+                FeedComponent
                 ],
   entryComponents: [],
   imports: [

@@ -3,7 +3,7 @@
     <!--Encabezado publicacion-->
     <ion-grid>
       <ion-row>
-        <ion-col size="2"><img [src]=imagenUsuario id="foto-publicador"></ion-col>
+        <ion-col size="2"><img [src]=imagenUsuario id="foto-publicador" (click)="verPerfil()"></ion-col>
         <ion-col id="nombre"><strong>{{datosPerf.nombre}}</strong></ion-col>
         <ion-col size="1.5" id="menu-boton">
           <ion-icon name="ellipsis-horizontal-outline" id="trigger-button"></ion-icon>

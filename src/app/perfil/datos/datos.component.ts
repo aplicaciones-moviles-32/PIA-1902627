@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { onValue, ref, Database, DatabaseReference } from '@angular/fire/database';
 import { LoginService } from '../../servicios/login.service'
 import { perfil } from 'src/app/modelos/interfaces';
@@ -12,12 +12,16 @@ import { DomSanitizer } from '@angular/platform-browser';
   styleUrls: ['./datos.component.scss'],
 })
 export class DatosComponent implements OnInit {
-
   constructor(private db: Database, private log: LoginService, private str: Storage, private sanit: DomSanitizer) {}
-  ngOnInit() {
+  ngOnInit() {}
+
+  ngOnChanges() {
     this.obtenerdatos();
   }
 
+  @Input()
+  user_target_id: string = "";
+  es_actual: boolean = false;  //Es true si el usuario visto es el loggeado
   desuscribir: any = null;
 
   datos: perfil = {
@@ -35,26 +39,25 @@ export class DatosComponent implements OnInit {
   fotoPerf = "assets/foto-pred.jpg";
 
   obtenerdatos() {
-    //Se suscribe a la obtención de usuario
+    //Se suscribe a la obtención del usuario que inició sesión
     this.log.obtenerUsuario().subscribe(user => {
       if(user) {
-        let refr = ref(this.db,"usuario/" + user.uid);
-        //Crea observador que muestra cada que se actualizan los datos
+        user.uid == this.user_target_id ? this.es_actual = true : this.es_actual = false; 
+        let refr = ref(this.db,"usuario/" + this.user_target_id);
+        //Crea observador que muestra cada que se actualizan los datos del usuario que se ve
         this.desuscribir = onValue(refr, perf => {
           let datos = perf.val();
-          this.datos = datos;
+          this.datos = perf.val();
           console.log(datos);
           if(datos.fotoperf) {
-            this.obtenerFotoPerf().then(url => {
-              this.fotoPerf = url;
-            })
+            this.obtenerFotoPerf().then(url => {this.fotoPerf = url;})
           }
-      })}
+        })
+      }
       else {
         console.log("alguien cerró sesión");
-        if(this.desuscribir) {
-          this.desuscribir();
-      }}}
+        if(this.desuscribir) {this.desuscribir();}
+      }}
   )}
 
   obtenerFotoPerf() {

@@ -1,0 +1,10 @@
+<ion-header collapse="fade">
+  <ion-toolbar>
+    <ion-title>algo</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div *ngFor="let datospub of Publicaciones">
+    <app-template-pub [key]="datospub.key" [publicacion]="datospub.value"></app-template-pub>
+  </div>
+</ion-content>

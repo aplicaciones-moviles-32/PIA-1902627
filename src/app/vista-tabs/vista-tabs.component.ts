@@ -4,6 +4,7 @@ import { PopoverController } from '@ionic/angular';
 import { PopoverPerfComponent } from './popover-perf/popover-perf.component';
 import { onValue, Database, ref } from '@angular/fire/database';
 import { Storage,ref as stref,getDownloadURL } from '@angular/fire/storage';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-vista-tabs',
@@ -12,7 +13,7 @@ import { Storage,ref as stref,getDownloadURL } from '@angular/fire/storage';
 })
 export class VistaTabsComponent implements OnInit {
 
-  constructor(private log: LoginService, private pop: PopoverController, private db: Database, private str: Storage) { }
+  constructor(private log: LoginService, private pop: PopoverController, private db: Database, private str: Storage, private rutas: Router) { }
 
   ngOnInit() {
     this.obtenerFoto();
@@ -40,16 +41,15 @@ export class VistaTabsComponent implements OnInit {
         this.desuscribir = onValue(refr, perf => {
           if(perf.val().fotoperf) {
             getDownloadURL(stref(this.str,perf.val().fotoperf)).then(url => {
-              this.fotoPerf = url;
-            })
+              this.fotoPerf = url;})
           }
         });
       }
-      else{ 
-        if(this.desuscribir) {
-          this.desuscribir();
-        }
-      }
+      else{ if(this.desuscribir) {this.desuscribir();} }
     })
   };
+
+  quitarparams() {
+    this.rutas.navigate(['/inicio'], {queryParams: {userId: 'me'}});
+  }
 }

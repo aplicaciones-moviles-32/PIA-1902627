@@ -5,6 +5,7 @@ import { getDownloadURL, ref as stref, Storage } from '@angular/fire/storage';
 import { Database, get, ref, update} from '@angular/fire/database';
 import { AlertController } from '@ionic/angular';
 import { LoginService } from '../servicios/login.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-template-pub',
@@ -13,7 +14,7 @@ import { LoginService } from '../servicios/login.service';
 })
 export class TemplatePubComponent implements OnInit {
 
-  constructor(private Stre: Storage, private db: Database, private alert: AlertController, private log: LoginService) { }
+  constructor(private Stre: Storage, private db: Database, private alert: AlertController, private log: LoginService, private ruta: Router) { }
 
   ngOnInit() {
   }
@@ -112,5 +113,9 @@ export class TemplatePubComponent implements OnInit {
   eliminarPublicacion() {
     this.log.eliminarFotoStorage(this.publicacionvar.imagen);
     this.log.eliminarPublicacion(this.publicacionvar.usuario, this.key);
+  }
+
+  verPerfil() {
+    this.ruta.navigate(['/inicio/perfil'], {queryParams: {userId: this.publicacionvar.usuario}});
   }
 }
